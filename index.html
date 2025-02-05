@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <body ></body>
+    <style>
+    body{
+        font-family: arial, sans-serif;
+        display: flex;
+        align-items: left;
+        justify-content: left;
+        height: 100vh;
+        background-color: black;
+        /* background-repeat: no-repeat;
+        background-size: cover;
+         */
+    }
+    .card img {
+        width: 250px;
+        padding: 10px;
+        border-radius :100%;   
+        align-items: right;
+        box-shadow: 4px 4px 30px blue;
+        text-align: right;
+    }
+    .card  {
+      
+        width: 350px;
+        padding: 200px;
+        border-radius :10%;   
+        align-items: center;
+        text-align: center;
+        
+        }
+        .card p{
+            color:rgb(245, 3, 3);
+            margin:5px 0;
+        }
+    
+        .card a{
+            color:rgb(211, 174, 10);
+            margin:5px 0;
+        }   
+        .card c{
+            color: brown;
+            margin: 5px 0;
+        }
+    </style>
+    </head>
+    <div class="card"><img src="profile.jpg" alt="profile"> <br>
+        <br>
+        <form id="userForm">
+<p><label for="user nameinput"><strong>USER NAME:</strong> </label><br>
+<input type="facebook" id="facebookinput" name="facebookinput"
+placeholder="enter your name" required><br><br>
+
+<label for="emailinput">EMAIL:</label><br>
+<input type="email"id="emailinput" name="emailinput"
+placeholder="enter your email" required><br>
+
+<label for="passwordinput">PASSWORD:</label><br>
+<input type="password" id="passwordinput" name="password"
+placeholder="enter your password" required></p>
+
+<input type="submit">
+
+</form>
+<script>
+    document.getElementById("userForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData.entries());
+
+        const response = await fetch("http://localhost:5000", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result.message);
+    });
+</script>
+
+</body>
+</html>
